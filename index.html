@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ROTA — Organizasyon Sağlığı Karar Platformu · LC Waikiki</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+<div class="app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><img src="assets/rota-icon.png" alt="ROTA" /></div>
+      <div class="name">ROTA<small>Veriden Karara, Karardan Etkiye</small></div>
+    </div>
+    <div class="rota-frame">
+      <div class="rf-row"><b>R</b><span>Sinyalleri Oku</span></div>
+      <div class="rf-row"><b>O</b><span>Ortak Zekâyı Düzenle</span></div>
+      <div class="rf-row"><b>T</b><span>Tespiti Karara Dönüştür</span></div>
+      <div class="rf-row"><b>A</b><span>Aksiyonu Etkiye Taşı</span></div>
+    </div>
+    <div class="persona-box">
+      <label>Bakış Açısı</label>
+      <select id="persona-select">
+        <option value="lider">İK Lideri / Genel Müdürlük</option>
+        <option value="manager">İK İş Ortağı Grup Müdürü</option>
+        <option value="uzman">İK İş Ortağı Uzmanı</option>
+        <option value="biz">İş Birimi Lideri</option>
+        <option value="excom">İcra Kurulu / Yönetim Kurulu</option>
+      </select>
+      <div class="hint" id="persona-hint"></div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="grp">Karar Merkezi</div>
+      <button data-v="exec" class="active"><span class="dot a"></span>Yönetici Özeti</button>
+      <button data-v="report"><span class="dot b"></span>Standart Rapor · 11 Bölüm</button>
+      <button data-v="ai"><span class="dot i"></span>Yapay Zekâ İçgörü Merkezi</button>
+      <button data-v="alerts"><span class="dot r"></span>Uyarı Merkezi</button>
+      <button data-v="actions"><span class="dot b"></span>Aksiyon Takip Merkezi</button>
+      <div class="grp">Analitik Modüller</div>
+      <button data-v="workforce"><span class="dot g"></span>İş Gücü Görünümü</button>
+      <button data-v="org"><span class="dot a"></span>Organizasyon ve Yapı</button>
+      <button data-v="talent"><span class="dot r"></span>Yetenek ve Yedekleme</button>
+      <button data-v="attrition"><span class="dot r"></span>Tahmine Dayalı Ayrılma</button>
+      <button data-v="succession"><span class="dot g"></span>Succession / Yedekleme</button>
+      <button data-v="compSim"><span class="dot b"></span>Ücret Simülasyonu</button>
+      <button data-v="pulse"><span class="dot i"></span>Pulse Survey</button>
+      <button data-v="assistant"><span class="dot i"></span>ROTA Asistanım</button>
+      <button data-v="cohort"><span class="dot a"></span>Cohort Analizi</button>
+      <button data-v="turnover"><span class="dot r"></span>İşe Alım ve Çalışan Devri</button>
+      <button data-v="perf"><span class="dot a"></span>Performans ve Organizasyon Sağlığı</button>
+      <button data-v="pay"><span class="dot r"></span>Ücret – Performans Dengesi</button>
+      <button data-v="engage"><span class="dot g"></span>Bağlılık ve Çalışan Deneyimi</button>
+      <div class="grp">Sentez ve Strateji</div>
+      <button data-v="risk"><span class="dot r"></span>Risk Haritası</button>
+      <button data-v="swot"><span class="dot a"></span>GZFT Analizi</button>
+      <button data-v="strat"><span class="dot g"></span>Stratejik Öncelikler</button>
+      <div class="grp">İK İş Ortağı Operasyonu</div>
+      <button data-v="directory"><span class="dot b"></span>Çalışan Dizini</button>
+      <button data-v="onetoone"><span class="dot i"></span>Birebir Görüşme Notları</button>
+      <button data-v="reqs"><span class="dot a"></span>İşe Alım Hattı</button>
+      <button data-v="comp"><span class="dot r"></span>Ücret Gözden Geçirme</button>
+      <div class="grp">Veri</div>
+      <button data-v="data"><span class="dot g"></span>Veri Yönetimi · İçe/Dışa Aktarım</button>
+    </nav>
+    <div class="side-foot">
+      <span class="badge-demo">● ÖRNEK VERİ</span>
+      <div style="margin-top:8px">Tüm rakamlar anonim örnek veridir. Değişiklikler tarayıcınızda saklanır.</div>
+    </div>
+  </aside>
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <div class="crumb"><b>ROTA</b> · <span id="crumb">Yönetici Özeti</span></div>
+        <h1 id="ttl">Yönetici Özeti</h1>
+        <div class="sub" id="sub"></div>
+      </div>
+      <div class="top-mid">
+        <div class="dept-pick"><label>Departman</label><select id="dept-select"></select></div>
+        <div class="search">🔎<input id="search" type="text" placeholder="Çalışan / rol ara..." /></div>
+      </div>
+      <div class="top-actions">
+        <button class="btn ai" id="btn-report">▤ Standart Rapor</button>
+        <button class="btn" id="btn-present">▣ Sunum Modu</button>
+        <button class="btn primary exit-present" id="btn-exit-present">Sunumdan Çık</button>
+        <button class="btn" id="btn-export">⇩ Dışa Aktar</button>
+      </div>
+    </header>
+    <main class="content">
+      <section class="view" id="view"></section>
+    </main>
+  </div>
+</div>
+<!-- çekmece -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh"><span class="ai-chip">✦</span><b id="d-title">Detay</b><button class="x" id="d-close">×</button></div>
+  <div class="db" id="d-body"></div>
+</aside>
+<!-- modal + bildirimler -->
+<div id="modal-root"></div>
+<div id="toasts"></div>
+<div class="assistant-float" id="assistant-float">
+  <button class="assistant-btn" id="assistant-btn" data-act="assistant-toggle" aria-label="ROTA Asistanım">
+    <img src="assets/rota-icon.png" alt="ROTA" />
+    <span>ROTA Asistanım</span>
+  </button>
+  <div class="assistant-panel" id="assistant-panel" aria-hidden="true">
+    <div class="assistant-panel-header">
+      <div>
+        <div class="assistant-panel-title">ROTA Asistanım</div>
+        <div class="assistant-panel-sub">Ücret, risk, 9 kutu, çalışan ve kritikleri hemen sor.</div>
+      </div>
+      <button class="assistant-close" data-act="assistant-close" aria-label="Asistanı kapat">×</button>
+    </div>
+    <div class="assistant-panel-messages" id="assistant-messages"></div>
+    <div class="assistant-panel-footer">
+      <input id="assistant-input" type="text" placeholder="Soru yazın... örn. 'En düşük ücret alan personel kim?'" />
+      <button class="btn primary" data-act="assistant-send">Gönder</button>
+    </div>
+  </div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/features.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
