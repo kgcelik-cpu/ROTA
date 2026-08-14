@@ -1,0 +1,25 @@
+/* ============================================================
+   ROTA · components.css — Küçük bileşen stilleri (scaffolding)
+   Bu dosya yeni modüller için hızlı stil desteği sağlar.
+   ============================================================ */
+:root{--muted:#697485;--card-bg:#fff;--glass:rgba(255,255,255,0.6)}
+.feature-card{background:var(--card-bg);border-radius:8px;padding:12px 14px;box-shadow:0 6px 18px rgba(10,20,40,0.06);margin-bottom:12px}
+.feature-card.kpi-small{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.feature-card .fc-h h4{margin:0;font-size:13px;color:#233;}
+.feature-card .big{font-size:20px;font-weight:700;color:#0b3760}
+.feature-placeholder{padding:18px;border:1px dashed #E6EEF9;border-radius:8px;background:linear-gradient(180deg,#fff,#fbfdff)}
+.feature-placeholder .placeholder-body{margin-top:10px;color:var(--muted)}
+.feature-sim .sim-row{display:flex;gap:10px;align-items:center;margin:8px 0}
+.feature-sim label{font-size:13px;color:var(--muted)}
+.feature-sim input[type=number]{width:84px;padding:6px;border-radius:6px;border:1px solid #E6EDF7}
+.sim-actions{display:flex;gap:12px;align-items:center}
+.sim-out{padding:8px 10px;border-radius:6px;background:#F5F8FB;border:1px solid #EAF1FB}
+.muted-txt{color:var(--muted);font-size:13px}
+.placeholder-body{min-height:56px;display:flex;align-items:center}
+
+/* small utilities */
+.controls{display:flex;gap:8px}
+.mini-btn{padding:6px 8px;border-radius:6px;border:1px solid #E6EEF9;background:#fff}
+
+/* responsive tweaks for placeholders */
+@media (max-width:800px){.feature-sim .sim-row{flex-direction:column;align-items:flex-start}.feature-card{padding:10px}}
